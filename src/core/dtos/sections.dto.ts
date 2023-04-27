@@ -1,4 +1,4 @@
-import { Sections } from '../entities/section.entity';
+import { Sections } from '../entities';
 
 export class SectionsDto {
   sections: Array<Sections>;

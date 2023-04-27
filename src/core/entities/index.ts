@@ -8,3 +8,5 @@ export * from './specificDetails.entity';
 export * from './tag.entity';
 export * from './university.entity';
 export * from './user.entity';
+export * from './rickMorty';
+export * from './section.entity';
