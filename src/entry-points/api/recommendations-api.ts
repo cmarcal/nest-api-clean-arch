@@ -4,18 +4,20 @@ import { HttpGateway } from 'src/gateway/httpGateway/httpGateway';
 
 @Injectable()
 export class RecommendationsApi {
-  protected readonly urlBase = process.env.API_PD_RECOMMENDATION;
+  private readonly urlBase = process.env.API_PD_RECOMMENDATION;
   constructor(private readonly httpGateway: HttpGateway) {}
 
   async getSections(quantitySections: number): Promise<Sections[]> {
     try {
-      const response = await this.httpGateway.get(`${this.urlBase}/sections`, {
-        quantitySections,
-      });
+      const param = new URLSearchParams(quantitySections.toString());
+      const response = (await this.httpGateway.get(
+        `${this.urlBase}/sections`,
+        param,
+      )) as unknown as Sections[];
 
-      return response.data;
+      return response;
     } catch (err) {
-      new Error(err);
+      throw new Error(err);
     }
   }
 }

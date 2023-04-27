@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AxiosFramework } from './axios';
-import { Axios } from 'axios';
+import { FetchFramework } from './fetch';
 
 @Module({
-  imports: [Axios],
-  exports: [Axios, AxiosFramework],
-  providers: [Axios, AxiosFramework],
+  exports: [FetchFramework],
+  providers: [FetchFramework],
 })
 export class FrameworkModule {}

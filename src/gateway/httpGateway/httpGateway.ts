@@ -1,30 +1,37 @@
 import { Injectable } from '@nestjs/common';
-import { AxiosFramework } from 'src/framework/axios';
+import { FetchFramework } from 'src/framework/fetch';
 import {
-  AxiosFrameworkIRequest,
-  AxiosFrameworkIResponse,
+  FetchFrameworkIResponse,
+  FetchFrameworkIParams,
 } from 'src/framework/IFrameworkAxios';
 
 @Injectable()
-export class HttpGateway extends AxiosFramework {
-  async get(url: string, params: unknown): Promise<AxiosFrameworkIResponse> {
-    return await this.get(url, params);
+export class HttpGateway {
+  constructor(private readonly fetchFramework: FetchFramework) {}
+  async get(
+    url: string,
+    params?: FetchFrameworkIParams,
+  ): Promise<FetchFrameworkIResponse> {
+    return await this.fetchFramework.get(url, params);
   }
   async post(
     url: string,
-    params: AxiosFrameworkIRequest,
-    body?: unknown,
-  ): Promise<AxiosFrameworkIResponse> {
-    return await this.post(url, body, params);
+    params: FetchFrameworkIParams,
+    body?: BodyInit,
+  ): Promise<FetchFrameworkIResponse> {
+    return await this.fetchFramework.post(url, params, body);
   }
   async put(
     url: string,
-    params: AxiosFrameworkIRequest,
-    body?: unknown,
-  ): Promise<AxiosFrameworkIResponse> {
-    return await this.post(url, body, params);
+    params: FetchFrameworkIParams,
+    body?: BodyInit,
+  ): Promise<FetchFrameworkIResponse> {
+    return await this.fetchFramework.post(url, params, body);
   }
-  async delete(url: string, params: unknown): Promise<AxiosFrameworkIResponse> {
-    return await this.get(url, params);
+  async delete(
+    url: string,
+    params: FetchFrameworkIParams,
+  ): Promise<FetchFrameworkIResponse> {
+    return await this.fetchFramework.delete(url, params);
   }
 }

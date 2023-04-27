@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export interface AxiosFrameworkIResponse extends AxiosResponse {}
+export interface FetchFrameworkIResponse extends Response {}
 
-export interface AxiosFrameworkIRequest extends AxiosRequestConfig {}
+export interface FetchFrameworkIParams extends URLSearchParams {}
